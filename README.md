@@ -2,7 +2,9 @@ Wazuh Custom rules and decoders
 
 To add to wazuh-manager:
 
-`git clone https://github.com/re-toor/Wazuh-Custom-rules-and-decoders.git`
+```
+git clone https://github.com/re-toor/Wazuh-Custom-rules-and-decoders.git
+```
 
 `cd Wazuh-Custom-rules-and-decoders`
 
