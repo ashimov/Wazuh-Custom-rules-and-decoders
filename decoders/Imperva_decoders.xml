@@ -1,0 +1,305 @@
+<!-- Modify it at your will. -->
+
+<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|HTTP/1.x Protocol Policy|HTTP/1.x Protocol Policy|Medium|act=None dst=192.168.6.36 dpt=443 duser=n/a src=192.168.139.20 spt=64532 proto=TCP rt=Jun 09 2023 10:53:07 cat=Alert cs1=HTTP/1.x Protocol Policy cs1Label=Policy cs2=mail.baovietbank.vn cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.baovietbank.vn cs4Label=ApplicationName cs5=Distributed Illegal Byte Code Character in Parameter Value cs5Label=Description-->
+
+<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|HTTP/1.x Protocol Policy|HTTP/1.x Protocol Policy|Low|act=None dst=192.168.6.36 dpt=443 duser=n/a src=10.175.128.131 spt=49911 proto=TCP rt=Jun 09 2023 07:21:21 cat=Alert cs1=HTTP/1.x Protocol Policy cs1Label=Policy cs2=mail.baovietbank.vn cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.baovietbank.vn cs4Label=ApplicationName cs5=Distributed Extremely Long Parameter cs5Label=Description-->
+
+<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|Recommended Signatures Policy for Web Applications|Recommended Signatures Policy for Web Applications|High|act=Block dst=192.168.6.36 dpt=443 duser=n/a src=10.175.128.131 spt=49911 proto=TCP rt=Jun 09 2023 07:41:21 cat=Alert cs1=Recommended Signatures Policy for Web Applications cs1Label=Policy cs2=mail.baovietbank.vn cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.baovietbank.vn cs4Label=ApplicationName cs5=Distributed Directory Traversal - 6(+) cs5Label=Description-->
+
+<decoder name="Imperva"> 
+       <prematch>CEF:0\|Imperva Inc.\|</prematch> 
+    </decoder> 
+ 
+    <!--<decoder name="Imperva_child"> -->
+    <!--   <parent>Imperva</parent> -->
+    <!--   <regex>\|SIEMintegration\|(\.+)\sfileId=</regex> -->
+    <!--   <order>IncapRules</order> -->
+    <!--</decoder> -->
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>CEF:0\|Imperva Inc.\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|(\.+)\|</regex> 
+       <order>application,version,event.type,event.name,severity</order> 
+    </decoder>
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>fileId=(\.+) \w+=</regex> 
+       <order>fileID</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>sourceServiceName=(\.+) \w+=</regex> 
+       <order>sourceServiceName</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>siteid=(\.+) \w+=</regex> 
+       <order>siteid</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>requestClientApplication=(\.+) \w+=</regex> 
+       <order>requestClientApplication</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>deviceFacility=(\.+) \w+=</regex> 
+       <order>deviceFacility</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs2=(\.+) \w+=</regex> 
+       <order>cs2</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs2Label=(\.+) \w+=</regex> 
+       <order>cs2Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs3=(\.+) \w+=</regex> 
+       <order>cs3</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs3Label=(\.+) \w+=</regex> 
+       <order>cs3Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs1=(\.+) \w+=</regex> 
+       <order>cs1</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs1Label=(\.+) \w+=</regex> 
+       <order>cs1Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs4=(\.+) \w+=</regex> 
+       <order>cs4</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs4Label=(\.+) \w+=</regex> 
+       <order>cs4Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs5=(\.+) \w+=</regex> 
+       <order>cs5</order> 
+    </decoder> 
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs5=(\.+)  \w+=</regex> 
+       <order>cs5</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs5Label=(\.+) \w+=</regex> 
+       <order>cs5Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs6(\.+) \w+=</regex> 
+       <order>cs6</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs6Label=(\.+) \w+=</regex> 
+       <order>cs6Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs7=(\.+) \w+=</regex> 
+       <order>cs7</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs7Label=(\.+) \w+=</regex> 
+       <order>cs7Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs8=(\.+) \w+=</regex> 
+       <order>cs8</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs8Label=(\.+) \w+=</regex> 
+       <order>cs8Label</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>customer=(\.+) \w+=</regex> 
+       <order>customer</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>start=(\.+) \w+=</regex> 
+       <order>start</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>request=(\.+) \w+=</regex> 
+       <order>request</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>requestMethod=(\.+) \w+=</regex> 
+       <order>requestMethod</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>app=(\.+) \w+=</regex> 
+       <order>app</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>act=(\.+) \w+=</regex> 
+       <order>action</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>deviceExternalId=(\.+) \w+=</regex> 
+       <order>deviceExternalId</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cpt=(\.+) \w+=</regex> 
+       <order>cpt</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>src=(\.+) \w+=</regex> 
+       <order>src</order> 
+    </decoder> 
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>dst=(\.+) \w+=</regex> 
+       <order>dst</order> 
+    </decoder> 
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>dpt=(\.+) \w+=</regex> 
+       <order>dpt</order> 
+    </decoder> 
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>duser=(\.+) \w+=</regex> 
+       <order>duser</order> 
+    </decoder> 
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>rt=(\.+) \w+=</regex> 
+       <order>rt</order> 
+    </decoder> 
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cat=(\.+) \w+=</regex> 
+       <order>cat</order> 
+    </decoder> 
+    
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>proto=(\.+) \w+=</regex> 
+       <order>protocol</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>ver=(\.+) \w+=</regex> 
+       <order>ver</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>end=(\.+) \w+=</regex> 
+       <order>end</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>fileType=(\.+) \w+=</regex> 
+       <order>fileType</order> 
+    </decoder> 
+ 
+    <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>filePermission=(\.+) \w+=</regex> 
+       <order>filePermission</order> 
+    </decoder> 
+ 
+   <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs9=(\.+) \w+=</regex> 
+       <order>cs9</order> 
+    </decoder> 
+ 
+   <decoder name="Imperva_child"> 
+       <parent>Imperva</parent> 
+       <regex>cs9Label=(\.+) \w+</regex> 
+       <order>cs9Label</order> 
+    </decoder> 
+ 
+  <!--  <decoder name="Imperva_child"> -->
+  <!--     <parent>Imperva</parent> -->
+  <!--     <regex>src=(\.*)\s</regex> -->
+  <!--     <order>src</order> -->
+  <!--  </decoder> -->
+ 
+  <!--  <decoder name="Imperva_child"> -->
+  <!--     <parent>Imperva</parent> -->
+  <!--     <regex>xff=(\.*)\s</regex> -->
+  <!--     <order>xff</order> -->
+  <!--  </decoder> -->
+ 
+  <!--<decoder name="Imperva_child"> -->
+  <!--   <parent>Imperva</parent> -->
+  <!--   <regex>sip=(\.*)\s</regex> -->
+  <!--   <order>sip</order> -->
+  <!--</decoder> -->
+ 
+  <!--<decoder name="Imperva_child"> -->
+  <!--   <parent>Imperva</parent> -->
+  <!--   <regex>spt=(\.*)\s</regex> -->
+  <!--   <order>spt</order> -->
+  <!--</decoder>-->

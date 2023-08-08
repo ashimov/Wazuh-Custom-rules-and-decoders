@@ -1,0 +1,843 @@
+<!-- Modify it at your will. -->
+
+<!--May 18 15:48:49 FortiGate_HA_FGT2KE CEF:0|Fortinet|FortiGate-2000E|6.4.6,build1879 (GA)|0000000011|forward traffic ip-conn|6|start=May 18 2023 15:48:49 logver=604061879 deviceExternalId=FGT2KETB19900273 dvchost=BVB-COREFW ad.vd=root ad.eventtime=1684399729931743146 ad.tz=+0700 ad.logid=0000000011 cat=traffic ad.subtype=forward deviceSeverity=warning src=192.168.145.95 spt=50246 deviceInboundInterface=Vlan_4 ad.srcintfrole=lan dst=192.168.5.61 dpt=53 deviceOutboundInterface=Vlan_51 ad.dstintfrole=lan ad.srccountry=Reserved ad.dstcountry=Reserved externalID=1754615252 proto=17 act=ip-conn ad.policyid=126 ad.policytype=policy ad.poluuid=1bf99d44-0c07-51ea-6e7b-0bb9781e5fc2 ad.policyname=AD2 app=TCP_UDP_53 ad.appcat=unscanned ad.crscore=5 ad.craction=262144 ad.crlevel=low ad.mastersrcmac=40:06:d5:2a:4f:d7 ad.srcmac=40:06:d5:2a:4f:d7 ad.srcserver=0 ad.dsthwvendor=VMware ad.masterdstmac=00:50:56:93:42:57 ad.dstmac=00:50:56:93:42:57 ad.dstserver=1-->
+<!--May 22 16:44:35 FortiGate_HA_FGT2KE CEF:0|Fortinet|FortiGate-2000E|6.4.6,build1879 (GA)|0000000013|forward traffic server-rst|5|start=May 22 2023 16:44:35 logver=604061879 deviceExternalId=FGT2KETB19900273 dvchost=BVB-COREFW ad.vd=root ad.eventtime=1684748676451745313 ad.tz=+0700 ad.logid=0000000013 cat=traffic ad.subtype=forward deviceSeverity=notice src=192.168.6.35 spt=50381 deviceInboundInterface=Vlan_4 ad.srcintfrole=lan dst=192.168.5.78 dpt=444 deviceOutboundInterface=Vlan_52 ad.dstintfrole=lan ad.srccountry=Reserved ad.dstcountry=Reserved externalID=1915771301 proto=6 act=server-rst ad.policyid=382 ad.policytype=policy ad.poluuid=2d99ce7c-afff-51ec-5862-0a5d00d2d330 ad.policyname=DR-AD app=tcp/444 ad.trandisp=noop ad.duration=5 out=449 in=313 ad.sentpkt=5 ad.rcvdpkt=4 ad.appcat=unscanned ad.mastersrcmac=40:06:d5:2a:4f:d7 ad.srcmac=40:06:d5:2a:4f:d7 ad.srcserver=0 ad.dsthwvendor=VMware ad.dstosname=Windows ad.dstswversion=8 ad.dstunauthuser=administrator ad.dstunauthusersource=kerberos ad.masterdstmac=00:50:56:93:a7:a2 ad.dstmac=00:50:56:93:a7:a2 ad.dstserver=0-->
+
+<decoder name="fortigate_custom">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Fortinet\|</prematch>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+    <parent>fortigate_custom</parent>
+    <regex>0\|Fortinet\|(\.+)\|(\.+)\|(\d+)\|(\.+)\|(\d+)\|</regex>
+    <order>application,version,logid,logname,severity</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>logver="(\.*)"|logver=(\.*)\s|logver=(\.*)$</regex>
+  <order>logver</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>deviceExternalId="(\.*)"|deviceExternalId=(\.*)\s|deviceExternalId=(\.*)$</regex>
+  <order>devid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dvchost="(\.*)"|dvchost=(\.*)\s|dvchost=(\.*)$</regex>
+  <order>dvchost</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>imei="(\.*)"|imei=(\.*)\s|imei=(\.*)$</regex>
+  <order>imei</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>sn="(\.*)"|sn=(\.*)\s|sn=(\.*)$</regex>
+  <order>sn</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>act="(\.*)"|act=(\.*)\s|act=(\.*)$</regex>
+  <order>action</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>agent="(\.*)"|agent=(\.*)\s|agent=(\.*)$</regex>
+  <order>agent</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>analyticscksum="(\.*)"|analyticscksum=(\.*)\s|analyticscksum=(\.*)$</regex>
+  <order>analyticscksum</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>analyticssubmit="(\.*)"|analyticssubmit=(\.*)\s|analyticssubmit=(\.*)$</regex>
+  <order>analyticssubmit</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>apn="(\.*)"|apn=(\.*)\s|apn=(\.*)$</regex>
+  <order>apn</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>app="(\.*)"|app=(\.*)\s|app=(\.*)$</regex>
+  <order>app</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>appact="(\.*)"|appact=(\.*)\s|appact=(\.*)$</regex>
+  <order>appact</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>appcat="(\.*)"|appcat=(\.*)\s|appcat=(\.*)$</regex>
+  <order>appcat</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>appid="(\.*)"|appid=(\.*)\s|appid=(\.*)$</regex>
+  <order>appid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>applist="(\.*)"|applist=(\.*)\s|applist=(\.*)$</regex>
+  <order>applist</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>apprisk="(\.*)"|apprisk=(\.*)\s|apprisk=(\.*)$</regex>
+  <order>apprisk</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>attack="(\.*)"|attack=(\.*)\s|attack=(\.*)$</regex>
+  <order>attack</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>attackid="(\.*)"|attackid=(\.*)\s|attackid=(\.*)$</regex>
+  <order>attackid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>method="(\.*)"|method=(\.*)\s|method=(\.*)$</regex>
+  <order>method</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>certhash="(\.*)"|certhash=(\.*)\s|certhash=(\.*)$</regex>
+  <order>certhash</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>carrier="(\.*)"|carrier=(\.*)\s|carrier=(\.*)$</regex>
+  <order>carrier</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>cat="(\.*)"|cat=(\.*)\s|cat=(\.*)$</regex>
+  <order>type</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>catdesc="(\.*)"|catdesc=(\.*)\s|catdesc=(\.*)$</regex>
+  <order>catdesc</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>channeltype="(\.*)"|channeltype=(\.*)\s|channeltype=(\.*)$</regex>
+  <order>channeltype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>count="(\.*)"|count=(\.*)\s|count=(\.*)$</regex>
+  <order>count</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>countapp="(\.*)"|countapp=(\.*)\s|countapp=(\.*)$</regex>
+  <order>countapp</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>countav="(\.*)"|countav=(\.*)\s|countav=(\.*)$</regex>
+  <order>countav</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>countdlp="(\.*)"|countdlp=(\.*)\s|countdlp=(\.*)$</regex>
+  <order>countdlp</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>countdns="(\.*)"|countdns=(\.*)\s|countdns=(\.*)$</regex>
+  <order>countdns</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>countips="(\.*)"|countips=(\.*)\s|countips=(\.*)$</regex>
+  <order>countips</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>countssh="(\.*)"|countssh=(\.*)\s|countssh=(\.*)$</regex>
+  <order>countssh</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>craction="(\.*)"|craction=(\.*)\s|craction=(\.*)$</regex>
+  <order>craction</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>crlevel="(\.*)"|crlevel=(\.*)\s|crlevel=(\.*)$</regex>
+  <order>crlevel</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>crscore="(\.*)"|crscore=(\.*)\s|crscore=(\.*)$</regex>
+  <order>crscore</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>rsrp="(\.*)"|rsrp=(\.*)\s|rsrp=(\.*)$</regex>
+  <order>rsrp</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>signalstrength="(\.*)"|signalstrength=(\.*)\s|signalstrength=(\.*)$</regex>
+  <order>signalstrength</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>rsrq="(\.*)"|rsrq=(\.*)\s|rsrq=(\.*)$</regex>
+  <order>rsrq</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>rssi="(\.*)"|rssi=(\.*)\s|rssi=(\.*)$</regex>
+  <order>rssi</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>devcategory="(\.*)"|devcategory=(\.*)\s|devcategory=(\.*)$</regex>
+  <order>devcategory</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>devtype="(\.*)"|devtype=(\.*)\s|devtype=(\.*)$</regex>
+  <order>devtype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>direction="(\.*)"|direction=(\.*)\s|direction=(\.*)$</regex>
+  <order>direction</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dlpextra="(\.*)"|dlpextra=(\.*)\s|dlpextra=(\.*)$</regex>
+  <order>dlpextra</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dstcountry="(\.*)"|dstcountry=(\.*)\s|dstcountry=(\.*)$</regex>
+  <order>dstcountry</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>deviceOutboundInterface="(\.*)"|deviceOutboundInterface=(\.*)\s|deviceOutboundInterface=(\.*)$</regex>
+  <order>dstintf</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dstintfrole="(\.*)"|dstintfrole=(\.*)\s|dstintfrole=(\.*)$</regex>
+  <order>dstintfrole</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dst="(\.*)"|dst=(\.*)\s|dst=(\.*)$</regex>
+  <order>dstip</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dstname="(\.*)"|dstname=(\.*)\s|dstname=(\.*)$</regex>
+  <order>dstname</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dpt="(\.*)"|dpt=(\.*)\s|dpt=(\.*)$</regex>
+  <order>dstport</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dstuuid="(\.*)"|dstuuid=(\.*)\s|dstuuid=(\.*)$</regex>
+  <order>dstuuid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>dtype="(\.*)"|dtype=(\.*)\s|dtype=(\.*)$</regex>
+  <order>dtype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>duration="(\.*)"|duration=(\.*)\s|duration=(\.*)$</regex>
+  <order>duration</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>epoch="(\.*)"|epoch=(\.*)\s|epoch=(\.*)$</regex>
+  <order>epoch</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>eventid="(\.*)"|eventid=(\.*)\s|eventid=(\.*)$</regex>
+  <order>eventid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>eventtime="(\.*)"|eventtime=(\.*)\s|eventtime=(\.*)$</regex>
+  <order>eventtime</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>eventtype="(\.*)"|eventtype=(\.*)\s|eventtype=(\.*)$</regex>
+  <order>eventtype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>filename="(\.*)"|filename=(\.*)\s|filename=(\.*)$</regex>
+  <order>filename</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>filesize="(\.*)"|filesize=(\.*)\s|filesize=(\.*)$</regex>
+  <order>filesize</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>filetype="(\.*)"|filetype=(\.*)\s|filetype=(\.*)$</regex>
+  <order>filetype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>filtercat="(\.*)"|filtercat=(\.*)\s|filtercat=(\.*)$</regex>
+  <order>filtercat</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>filteridx="(\.*)"|filteridx=(\.*)\s|filteridx=(\.*)$</regex>
+  <order>filteridx</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>filtername="(\.*)"|filtername=(\.*)\s|filtername=(\.*)$</regex>
+  <order>filtername</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>filtertype="(\.*)"|filtertype=(\.*)\s|filtertype=(\.*)$</regex>
+  <order>filtertype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>hostname="(\.*)"|hostname=(\.*)\s|hostname=(\.*)$</regex>
+  <order>hostname</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>iccid="(\.*)"|iccid=(\.*)\s|iccid=(\.*)$</regex>
+  <order>iccid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>icmpcode="(\.*)"|icmpcode=(\.*)\s|icmpcode=(\.*)$</regex>
+  <order>icmpcode</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>icmpid="(\.*)"|icmpid=(\.*)\s|icmpid=(\.*)$</regex>
+  <order>icmpid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>icmptype="(\.*)"|icmptype=(\.*)\s|icmptype=(\.*)$</regex>
+  <order>icmptype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>imsi="(\.*)"|imsi=(\.*)\s|imsi=(\.*)$</regex>
+  <order>imsi</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>incidentserialno="(\.*)"|incidentserialno=(\.*)\s|incidentserialno=(\.*)$</regex>
+  <order>incidentserialno</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>ip="(\.*)"|ip=(\.*)\s|ip=(\.*)$</regex>
+  <order>ip</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>ipaddr="(\.*)"|ipaddr=(\.*)\s|ipaddr=(\.*)$</regex>
+  <order>ipaddr</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>lanin="(\.*)"|lanin=(\.*)\s|lanin=(\.*)$</regex>
+  <order>lanin</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>lanout="(\.*)"|lanout=(\.*)\s|lanout=(\.*)$</regex>
+  <order>lanout</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>deviceSeverity="(\.*)"|deviceSeverity=(\.*)\s|deviceSeverity=(\.*)$</regex>
+  <order>level</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>logdesc="(\.*)"|logdesc=(\.*)\s|logdesc=(\.*)$</regex>
+  <order>logdesc</order>
+</decoder>
+
+<!--<decoder name="fortigate_custom_child">-->
+<!--  <parent>fortigate_custom</parent>-->
+<!--  <regex>logid="(\.*)"|logid=(\.*)\s|logid=(\.*)$</regex>-->
+<!--  <order>logid</order>-->
+<!--</decoder>-->
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>login="(\.*)"|login=(\.*)\s|login=(\.*)$</regex>
+  <order>login</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>mastersrcmac="(\.*)"|mastersrcmac=(\.*)\s|mastersrcmac=(\.*)$</regex>
+  <order>mastersrcmac</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>msg="(\.*)"|msg=(\.*)\s|msg=(\.*)$</regex>
+  <order>msg</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>osname="(\.*)"|osname=(\.*)\s|osname=(\.*)$</regex>
+  <order>osname</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>phonenumber="(\.*)"|phonenumber=(\.*)\s|phonenumber=(\.*)$</regex>
+  <order>phonenumber</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>plan="(\.*)"|plan=(\.*)\s|plan=(\.*)$</regex>
+  <order>plan</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>policyid="(\.*)"|policyid=(\.*)\s|policyid=(\.*)$</regex>
+  <order>policyid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>policymode="(\.*)"|policymode=(\.*)\s|policymode=(\.*)$</regex>
+  <order>policymode</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>policytype="(\.*)"|policytype=(\.*)\s|policytype=(\.*)$</regex>
+  <order>policytype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>poluuid="(\.*)"|poluuid=(\.*)\s|poluuid=(\.*)$</regex>
+  <order>poluuid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>policyname="(\.*)"|policyname=(\.*)\s|policyname=(\.*)$</regex>
+  <order>policyname</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>profile="(\.*)"|profile=(\.*)\s|profile=(\.*)$</regex>
+  <order>profile</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>proto="(\.*)"|proto=(\.*)\s|proto=(\.*)$</regex>
+  <order>proto</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>qclass="(\.*)"|qclass=(\.*)\s|qclass=(\.*)$</regex>
+  <order>qclass</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>qname="(\.*)"|qname=(\.*)\s|qname=(\.*)$</regex>
+  <order>qname</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>qtype="(\.*)"|qtype=(\.*)\s|qtype=(\.*)$</regex>
+  <order>qtype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>qtypeval="(\.*)"|qtypeval=(\.*)\s|qtypeval=(\.*)$</regex>
+  <order>qtypeval</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>quarskip="(\.*)"|quarskip=(\.*)\s|quarskip=(\.*)$</regex>
+  <order>quarskip</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>rcvdbyte="(\.*)"|rcvdbyte=(\.*)\s|rcvdbyte=(\.*)$</regex>
+  <order>rcvdbyte</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>rcvdpkt="(\.*)"|rcvdpkt=(\.*)\s|rcvdpkt=(\.*)$</regex>
+  <order>rcvdpkt</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>reason="(\.*)"|reason=(\.*)\s|reason=(\.*)$</regex>
+  <order>reason</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>ref="(\.*)"|ref=(\.*)\s|ref=(\.*)$</regex>
+  <order>ref</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>reqtype="(\.*)"|reqtype=(\.*)\s|reqtype=(\.*)$</regex>
+  <order>reqtype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>rx_diff="(\.*)"|rx_diff=(\.*)\s|rx_diff=(\.*)$</regex>
+  <order>rx_diff</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>scertcname="(\.*)"|scertcname=(\.*)\s|scertcname=(\.*)$</regex>
+  <order>scertcname</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>scertissuer="(\.*)"|scertissuer=(\.*)\s|scertissuer=(\.*)$</regex>
+  <order>scertissuer</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>sentbyte="(\.*)"|sentbyte=(\.*)\s|sentbyte=(\.*)$</regex>
+  <order>sentbyte</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>sentpkt="(\.*)"|sentpkt=(\.*)\s|sentpkt=(\.*)$</regex>
+  <order>sentpkt</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>service="(\.*)"|service=(\.*)\s|service=(\.*)$</regex>
+  <order>service</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>externalID="(\.*)"|externalID=(\.*)\s|externalID=(\.*)$</regex>
+  <order>sessionid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>severity="(\.*)"|severity=(\.*)\s|severity=(\.*)$</regex>
+  <order>severity</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>sinr="(\.*)"|sinr=(\.*)\s|sinr=(\.*)$</regex>
+  <order>sinr</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>slot="(\.*)"|slot=(\.*)\s|slot=(\.*)$</regex>
+  <order>slot</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>srccountry="(\.*)"|srccountry=(\.*)\s|srccountry=(\.*)$</regex>
+  <order>srccountry</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>deviceInboundInterface="(\.*)"|deviceInboundInterface=(\.*)\s|deviceInboundInterface=(\.*)$</regex>
+  <order>srcintf</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>srcintfrole="(\.*)"|srcintfrole=(\.*)\s|srcintfrole=(\.*)$</regex>
+  <order>srcintfrole</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>src="(\.*)"|src=(\.*)\s|src=(\.*)$</regex>
+  <order>src</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>srcmac="(\.*)"|srcmac=(\.*)\s|srcmac=(\.*)$</regex>
+  <order>srcmac</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>srcname="(\.*)"|srcname=(\.*)\s|srcname=(\.*)$</regex>
+  <order>srcname</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>spt="(\.*)"|spt=(\.*)\s|spt=(\.*)$</regex>
+  <order>srcport</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>srcserver="(\.*)"|srcserver=(\.*)\s|srcserver=(\.*)$</regex>
+  <order>srcserver</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>srcuuid="(\.*)"|srcuuid=(\.*)\s|srcuuid=(\.*)$</regex>
+  <order>srcuuid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>status="(\.*)"|status=(\.*)\s|status=(\.*)$</regex>
+  <order>status</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>subtype="(\.*)"|subtype=(\.*)\s|subtype=(\.*)$</regex>
+  <order>subtype</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>temperature="(\.*)"|temperature=(\.*)\s|temperature=(\.*)$</regex>
+  <order>temperature</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>time="(\.*)"|time=(\.*)\s|time=(\.*)$</regex>
+  <order>time</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>trandisp="(\.*)"|trandisp=(\.*)\s|trandisp=(\.*)$</regex>
+  <order>trandisp</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>transip="(\.*)"|transip=(\.*)\s|transip=(\.*)$</regex>
+  <order>transip</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>transport="(\.*)"|transport=(\.*)\s|transport=(\.*)$</regex>
+  <order>transport</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>tx="(\.*)"|tx=(\.*)\s|tx=(\.*)$</regex>
+  <order>tx</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>tx_diff="(\.*)"|tx_diff=(\.*)\s|tx_diff=(\.*)$</regex>
+  <order>tx_diff</order>
+</decoder>
+
+<!--<decoder name="fortigate_custom_child">-->
+<!--  <parent>fortigate_custom</parent>-->
+<!--  <regex>type="(\.*)"|type=(\.*)\s|type=(\.*)$</regex>-->
+<!--  <order>type</order>-->
+<!--</decoder>-->
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>url="(\.*)"|url=(\.*)\s|url=(\.*)$</regex>
+  <order>url</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>utmaction="(\.*)"|utmaction=(\.*)\s|utmaction=(\.*)$</regex>
+  <order>utmaction</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>utmref="(\.*)"|utmref=(\.*)\s|utmref=(\.*)$</regex>
+  <order>utmref</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>vd="(\.*)"|vd=(\.*)\s|vd=(\.*)$</regex>
+  <order>vd</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>virus="(\.*)"|virus=(\.*)\s|virus=(\.*)$</regex>
+  <order>virus</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>virusid="(\.*)"|virusid=(\.*)\s|virusid=(\.*)$</regex>
+  <order>virusid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>wanin="(\.*)"|wanin=(\.*)\s|wanin=(\.*)$</regex>
+  <order>wanin</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>wanout="(\.*)"|wanout=(\.*)\s|wanout=(\.*)$</regex>
+  <order>wanout</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>xid="(\.*)"|xid=(\.*)\s|xid=(\.*)$</regex>
+  <order>xid</order>
+</decoder>
+
+<decoder name="fortigate_custom_child">
+  <parent>fortigate_custom</parent>
+  <regex>user="(\.*)"|user=(\.*)\s|user=(\.*)$</regex>
+  <order>dstuser</order>
+</decoder>

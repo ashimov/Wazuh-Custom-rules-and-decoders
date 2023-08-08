@@ -1,0 +1,112 @@
+
+<!--2023-05-23T15:00:14+07:00 192.168.5.147 CEF:0|Trend Micro|Deep Security Agent|20.0.741|6001200|AppControl detectOnly|6|cn1=133 cn1Label=Host ID dvc=192.168.6.62 TrendMicroDsTenant=Primary TrendMicroDsTenantId=0 fileHash=E9B054D308302294BC3512ACCB8FF6C5C22C2B528C954B9632E11A1768171B41 suser=IIS APPPOOL\\ebank-test suid=S-1-5-82-2557180504-3721243451-3860544242-2444544974-599536489 act=detectOnly filePath=C:\\Program Files\\Common Files\\microsoft shared\\OFFICE14\\Cultures\\\\OFFICE.ODF fsize=4300432 aggregationType=0 repeatCount=1 cs1=notWhitelisted cs1Label=actionReason cs2=2D419A6B265FAB974D4BF11FBC401DC6140BE61B cs2Label=sha1 cs3=408AAD77F293E6DB1DDCCF8F3E9534AF cs3Label=md5-->
+
+<!--2023-05-23T14:58:07+07:00 192.168.5.147 CEF:0|Trend Micro|Deep Security Manager|20.0.741|7024|Application Control Software Changes Detected|3|src=192.168.5.147 suser=System target=192.168.6.62 msg=Software changes detected by Application Control on target host. \n\nNumber of software changes: 2 TrendMicroDsTenant=Primary TrendMicroDsTenantId=0-->
+
+<!--2023-05-23T14:57:24+07:00 192.168.5.147 CEF:0|Trend Micro|Deep Security Manager|20.0.741|710|Events Retrieved|3|src=192.168.5.147 suser=System target=192.168.12.144 (dc-smartproxyuat) msg=Description Omitted TrendMicroDsTenant=Primary TrendMicroDsTenantId=0 -->
+
+<decoder name="cef_trend_micro">
+    <program_name>CEF</program_name>
+    <prematch>^0\|Trend Micro\|</prematch>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <!--<prematch>Trend Micro\|Deep Security</prematch>-->
+    <regex>0\|Trend Micro\|(\.+)\|(\.+)\|(\d+)\|(\.+)\|(\d+)\|</regex>
+    <order>application,version,event.id,event.name,severity</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>act=(\S+) </regex>
+    <order>action</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>dvc=(\.+) \w+=</regex>
+    <order>device</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>src=(\S+)</regex>
+    <order>src</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>target=(\.+) \w+=</regex>
+    <order>dst</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>suser=(\.+) \w+=</regex>
+    <order>suser</order>
+</decoder>
+
+<!--<decoder name="cef_trend_micro_child">-->
+<!--    <parent>cef_trend_micro</parent>-->
+<!--    <regex>target=(\.+)\s+msg=</regex>-->
+<!--    <order>target</order>-->
+<!--</decoder>-->
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>fileHash=(\.+) \w+=</regex>
+    <order>fileHash</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>filePath=(\.+) \w+=</regex>
+    <order>filePath</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>msg=(\.+) \w+=</regex>
+    <order>msg</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>cs1Label=(\.+) \w+=</regex>
+    <order>cs1Lable</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>cs1=(\.+) \w+=</regex>
+    <order>cs1</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>cs2Label=(\.+) \w+=</regex>
+    <order>cs2Lable</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>cs2=(\S+)</regex>
+    <order>cs2</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>cs3Label=(\.+) \w+=</regex>
+    <order>cs3Lable</order>
+</decoder>
+
+<decoder name="cef_trend_micro_child">
+    <parent>cef_trend_micro</parent>
+    <regex>cs3=(\.+) \w+=</regex>
+    <order>cs3</order>
+</decoder>
+
+
+
+
