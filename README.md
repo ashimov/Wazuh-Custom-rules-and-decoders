@@ -18,3 +18,6 @@ cp rules/* /var/ossec/etc/rules/
 chown wazuh:wazuh /var/ossec/etc/rules/*
 ```
 Restart Wazuh-manager to apply all change
+```
+restart wazuh-manager
+```
