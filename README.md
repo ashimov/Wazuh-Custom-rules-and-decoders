@@ -20,3 +20,5 @@ Restart Wazuh-manager to apply all change
 ```
 restart wazuh-manager
 ```
+
+Based on [Advanced Wazuh Detection Rules](https://github.com/socfortress/Wazuh-Rules)
