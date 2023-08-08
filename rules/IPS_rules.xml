@@ -1,0 +1,34 @@
+<!-- Modify it at your will. -->
+<group name="trend_micro,cef_trend_micro">   
+
+    <rule id="200811" level="3">
+        <decoded_as>trend_micro_IPS</decoded_as>
+        <match>BVB-TRENDMICRO-SMS</match>
+        <description>IPS log detected.</description>
+    </rule>
+    
+    <rule id="200812" level="4">
+        <if_sid>200811</if_sid>
+        <field name="event.name">Geo</field>
+        <description>$(event.name) $(action): $(src)</description>
+    </rule>
+    
+    <rule id="200813" level="4">
+        <if_sid>200811</if_sid>
+        <field name="event.name">Reputation Entry</field>
+        <description>$(event.name): $(src)</description>
+    </rule>
+    
+    <rule id="200814" level="4">
+        <if_sid>200811</if_sid>
+        <field name="suser">System</field>
+        <description>$(description)</description>
+    </rule>
+    
+    <rule id="200815" level="3">
+        <if_sid>200811</if_sid>
+        <match>Login on account</match>
+        <description>Authentication log detected.</description>
+    </rule>
+    
+</group>

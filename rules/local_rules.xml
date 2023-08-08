@@ -1,0 +1,61 @@
+<!-- Local rules -->
+
+<!-- Modify it at your will. -->
+<!-- Copyright (C) 2015, Wazuh Inc. -->
+
+<!-- Example -->
+<group name="local,syslog,sshd,">
+
+  <!--
+  Dec 10 01:02:02 host sshd[1234]: Failed none for root from 1.1.1.1 port 1066 ssh2
+  -->
+  <rule id="100001" level="5">
+    <if_sid>5716</if_sid>
+    <srcip>1.1.1.1</srcip>
+    <description>sshd: authentication failed from IP 1.1.1.1.</description>
+    <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,</group>
+  </rule>
+
+</group>
+
+<group name="ossec,">
+  <rule id="100050" level="0">
+    <if_sid>530</if_sid>
+    <match>^ossec: output: 'process list'</match>
+    <description>List of running processes.</description>
+    <group>process_monitor,</group>
+  </rule>
+
+  <rule id="100051" level="7" ignore="900">
+    <if_sid>100050</if_sid>
+    <match>nc -l</match>
+    <description>netcat listening for incoming connections.</description>
+    <group>process_monitor,</group>
+  </rule>
+</group>
+
+<group name="windows,windows_security,">
+    <rule id="60154" level="3" overwrite="yes">
+        <if_sid>60144,60145</if_sid>
+        <field name="win.eventdata.targetSid">^%{S-1-5-32-544}$|^S-1-5-32-544$</field>
+        <options>no_full_log</options>
+        <description>Administrators group changed.</description>
+        <mitre>
+          <id>T1484</id>
+        </mitre>
+        <group>gdpr_IV_32.2,gdpr_IV_35.7.d,gpg13_7.10,group_changed,hipaa_164.312.a.2.I,hipaa_164.312.a.2.II,hipaa_164.312.b,nist_800_53_AC.2,nist_800_53_AC.7,nist_800_53_AU.14,nist_800_53_IA.4,pci_dss_10.2.5,pci_dss_8.1.2,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,win_group_changed,</group>
+      </rule>
+  </group>
+  
+  <group name="sysmon,sysmon_eid11_detections,windows,">
+  <rule id="92214" level="10" overwrite="yes">
+    <if_group>sysmon_event_11</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)(winword|excel|powerpnt|outlook)\.exe</field>
+    <field name="win.eventdata.targetFilename" type="pcre2">(?i)appdata\\\\.+\.lnk</field>
+    <options>no_full_log</options>
+    <description>Suspicious file created by Microsoft Office process: $(win.eventdata.image) created $(win.eventdata.targetFilename)</description>
+    <mitre>
+      <id>T1027</id>
+    </mitre>
+  </rule>
+    </group>

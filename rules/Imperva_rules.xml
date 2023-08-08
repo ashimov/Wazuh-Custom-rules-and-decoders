@@ -1,0 +1,414 @@
+<!-- Modify it at your will. -->
+<group name="Imperva,CEF,">
+
+    <rule id="82002" level="0">
+        <decoded_as>Imperva</decoded_as>
+        <description>WAF messages grouped.</description>
+    </rule>
+  
+    <rule id="82003" level="12">
+        <if_sid>82002</if_sid>
+        <match>CVE</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1068</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82004" level="3">
+        <if_sid>82002</if_sid>
+        <match>HTML META tag injection</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1059</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82005" level="5">
+        <if_sid>82002</if_sid>
+        <match>Post Request - Missing Content</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1572</id>
+        </mitre>
+    </rule>
+    <rule id="82006" level="3">
+        <if_sid>82002</if_sid>
+        <match>Illegal Parameter Encoding</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1132,T1553</id>
+        </mitre>
+    </rule>
+    <rule id="82007" level="3">
+        <if_sid>82002</if_sid>
+        <match>NULL Character</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1001</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82008" level="3">
+        <if_sid>82002</if_sid>
+        <match>Extremely Long Parameter</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1498</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82009" level="7">
+        <if_sid>82002</if_sid>
+        <match>Directory Traversal</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1505</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82010" level="7">
+        <if_sid>82002</if_sid>
+        <match>Abnormally Long Request</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1498,T1573</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82011" level="7">
+        <if_sid>82002</if_sid>
+        <match>Database alter table</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1078</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82012" level="3">
+        <if_sid>82002</if_sid>
+        <match>URL Encoding</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1070</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82013" level="7">
+        <if_sid>82002</if_sid>
+        <match>Extremely Long HTTP Request</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1496</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82014" level="3">
+        <if_sid>82002</if_sid>
+        <match>JSON Message</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1505</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82015" level="7">
+        <if_sid>82002</if_sid>
+        <match>HTTP Response Splitting Vulnerability</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1505</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82016" level="3">
+        <if_sid>82002</if_sid>
+        <match>Malformed URL</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1496</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82017" level="7">
+        <if_sid>82002</if_sid>
+        <match>Illegal Byte Code Character</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1574</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82018" level="7">
+        <if_sid>82002</if_sid>
+        <match>Command injection using ping</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1059</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82019" level="12">
+        <if_sid>82002</if_sid>
+        <match>WEB-MISC apache DOS attempt</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1498,T1499</id>
+        </mitre>
+    </rule>
+    <rule id="820191" level="3">
+        <if_sid>82019</if_sid>
+        <match>10.33.130.</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1498,T1499</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82020" level="7">
+        <if_sid>82002</if_sid>
+        <match>win.ini access trial</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1083</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82021" level="7">
+        <if_sid>82002</if_sid>
+        <match>Multiple signatures</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1115</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82022" level="12">
+        <if_sid>82002</if_sid>
+        <match>SQL Injection</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1574,T1059</id>
+        </mitre>
+    </rule>
+    <rule id="820221" level="3">
+        <if_sid>82022</if_sid>
+        <match>10.33.130.</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1574,T1059</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82023" level="12">
+        <if_sid>82002</if_sid>
+        <match>Nmap scanner</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1046</id>
+        </mitre>
+    </rule>
+    <rule id="820231" level="3">
+        <if_sid>82023</if_sid>
+        <match>10.33.130.</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1046</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82024" level="12">
+        <if_sid>82002</if_sid>
+        <match>Email Injection</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1071</id>
+        </mitre>
+    </rule>
+    <rule id="820241" level="3">
+        <if_sid>82024</if_sid>
+        <match>10.33.130.</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1071</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82025" level="12">
+        <if_sid>82002</if_sid>
+        <match>XSS</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1059,T1027</id>
+        </mitre>
+    </rule>
+    <rule id="820251" level="3">
+        <if_sid>82025</if_sid>
+        <match>10.33.130.</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1059,T1027</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82026" level="7">
+        <if_sid>82002</if_sid>
+        <match>WEB-ATTACKS</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1105,T1222</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82027" level="3">
+        <if_sid>82002</if_sid>
+        <match>etc.hosts access</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82028" level="12">
+        <if_sid>82002</if_sid>
+        <match>WEB-MISC /etc/passwd</match>
+        <description>$(cs5)</description>
+    </rule>
+    <rule id="820281" level="3">
+        <if_sid>82028</if_sid>
+        <match>10.33.130.</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82029" level="7">
+        <if_sid>82002</if_sid>
+        <match>WEB-IIS cmd.exe access</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82030" level="7">
+        <if_sid>82002</if_sid>
+        <match>Truncate table attempt</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1485</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82031" level="7">
+        <if_sid>82002</if_sid>
+        <match>System32 access trial</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1003,T1047</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82032" level="3">
+        <if_sid>82002</if_sid>
+        <match>System32 access</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82033" level="7">
+        <if_sid>82002</if_sid>
+        <match>SQLI using concat method</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1574,T1059</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82034" level="7">
+        <if_sid>82002</if_sid>
+        <match>SQL Code Leakage</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1082</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82035" level="7">
+        <if_sid>82002</if_sid>
+        <match>SHELLCODE x86 NOOP</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1059,T1055</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82036" level="7">
+        <if_sid>82002</if_sid>
+        <match>Redundant UTF-8 Encoding</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1507</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82037" level="7">
+        <if_sid>82002</if_sid>
+        <match>Redundant HTTP Headers</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1546</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82038" level="7">
+        <if_sid>82002</if_sid>
+        <match>Php_News Multiple Remote File Include Vulnerabilities</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82039" level="3">
+        <if_sid>82002</if_sid>
+        <match>PHP remote file include attempt</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1059</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82040" level="7">
+        <if_sid>82002</if_sid>
+        <match>PHP Unserialized Gadget</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1530</id>
+        </mitre>
+    </rule>
+    
+    <rule id="82041" level="7">
+        <if_sid>82002</if_sid>
+        <match>PHP Generic Short Open Tags</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82042" level="7">
+        <if_sid>82002</if_sid>
+        <match>PHP Easter Eggs</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82043" level="7">
+        <if_sid>82002</if_sid>
+        <match>MySQL system variables</match>
+        <description>$(cs5)</description>
+    </rule>
+    
+    <rule id="82044" level="7">
+        <if_sid>82002</if_sid>
+        <match>Multiple ORACLE Application Server sample page access</match>
+        <description>$(cs5)</description>>
+    </rule>
+    
+    <rule id="82045" level="3">
+        <if_sid>82002</if_sid>
+        <match>Multiple MSSQL Data Retrieval with Explicit Conversion Errors</match>
+        <description>$(cs5)</description>
+        <mitre>
+            <id>T1003</id>
+        </mitre>
+    </rule>
+    
+
+  
+</group>

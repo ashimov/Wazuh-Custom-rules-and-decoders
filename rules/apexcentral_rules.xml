@@ -1,0 +1,124 @@
+<!-- Modify it at your will. -->
+<group name="trend_micro,cef_trend_mirco">    
+ 
+    <rule id="200830" level="3">
+        <decoded_as>cef_trend_apexcentral</decoded_as>
+        <field name="severity">3</field>
+        <description>Apex Central Log detected.</description>
+        <group>low</group>
+    </rule>
+
+    <rule id="200831" level="3">
+        <if_sid>200830</if_sid>
+        <field name="event.name">content filter</field>
+        <description>$(event.name): $(request)</description>
+        <group>low</group>
+    </rule>
+
+    <rule id="200832" level="3">
+        <if_sid>200830</if_sid>
+        <field name="event.name">CnC Callback</field>
+        <description>$(event.name): $(src)</description>
+        <mitre>
+            <id>T1071</id>
+        </mitre>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200833" level="3">
+        <if_sid>200830</if_sid>
+        <field name="event.name">Intrusion Prevention</field>
+        <description>$(event.name): $(src)</description>
+        <mitre>
+            <id>T1053</id>
+        </mitre>
+        <group>low,pci_dss_11.5.11</group>
+    </rule>
+    
+    <rule id="200834" level="3">
+        <if_sid>200830</if_sid>
+        <field name="event.name">Suspicious Connection</field>
+        <description>$(event.name): $(src)</description>
+        <mitre>
+            <id>T1049</id>
+            <id>T1071</id> 
+        </mitre>
+        <group>low,pci_dss_10.2</group>
+    </rule>
+    
+    <rule id="200835" level="3">
+        <if_sid>200830</if_sid>
+        <field name="event.name">Device Access Control</field>
+        <description>$(event.name): $(TMCMLogDetectedIP)</description>
+        <group>low,pci_dss_7.2.1</group>
+    </rule>
+    
+    <rule id="200837" level="3">
+        <if_sid>200830</if_sid>
+        <field name="event.name">user defined</field>
+        <description>$(event.name): $(src)</description>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200838" level="3">
+        <if_sid>200830</if_sid>
+        <field name="cs6">Quarantine</field>
+        <description>$(event.name)</description>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200839" level="3">
+        <if_sid>200830</if_sid>
+        <field name="event.name">Data Loss Prevention</field>
+        <description>$(event.name): $(src)</description>
+        <mitre>
+            <id>T1565</id>
+        </mitre>
+        <group>low,pci_dss_11.5.11</group>
+    </rule>
+    
+    <rule id="200840" level="6">
+        <if_sid>200830</if_sid>
+        <field name="cs2">DLP_GPKT</field>
+        <description>DLP_GPKT: $(src)</description>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200841" level="3">                    <!--Đến đây rồi-->
+        <if_sid>200830</if_sid>
+        <field name="cs5">Quarantine</field>
+        <description>$(event.name)</description>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200842" level="8">
+        <if_sid>200830</if_sid>
+        <field name="cs4">virus log</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+    <rule id="200843" level="12">
+        <if_sid>200842</if_sid>
+        <!--<field name="event.action">AV:File quarantined|AV:Unable to upload file|AV:No action</field>-->
+        <!--<field name="event.action">!(AV:File cleaned)</field>-->
+        <match>!AV:File cleaned</match>
+        <description>$(event.name)</description>
+        <group>critical</group>
+    </rule>
+
+    <rule id="200836" level="6">
+        <decoded_as>cef_trend_apexcentral</decoded_as>
+        <field name="severity">6</field>
+        <description>$(event.name)</description>
+        <group>medium</group>
+    </rule>
+
+    <rule id="20087" level="8">
+        <decoded_as>cef_trend_apexcentral</decoded_as>
+        <field name="severity">8</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+</group>

@@ -1,0 +1,48 @@
+<group name="cef_trend_micro,trend_micro,osce">
+    <rule id="200800" level="3">
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="investigationStatus">\.+</field>
+        <description>TrendMicro Grouping</description>
+        <!--<options>no_full_log</options>-->
+    </rule>
+    <rule id="200801" level="5">
+        <if_sid>200800</if_sid>
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">low</field>
+        <description>TrendMicro Low - $(description)</description>
+        <!--<options>no_full_log</options>-->
+        <group>low</group>
+    </rule>
+    <rule id="200802" level="8">
+        <if_sid>200800</if_sid>
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">medium</field>
+        <description>TrendMicro Medium - $(description)</description>
+        <!--<options>no_full_log</options>-->
+        <group>medium</group>
+    </rule>
+    <rule id="200803" level="12">
+        <if_sid>200800</if_sid>
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">high</field>
+        <description>TrendMicro High - $(description)</description>
+        <!--<options>no_full_log</options>-->
+        <group>high</group>
+    </rule>
+    <rule id="200804" level="14">
+        <if_sid>200800</if_sid>
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">critical</field>
+        <description>TrendMicro Critical - $(description)</description>
+        <!--<options>no_full_log</options>-->
+        <group>critical</group>
+    </rule>
+
+    <!--    <rule id="200808" level="5">-->
+    <!--    <decoded_as>trend_micro_IPS_user_authentication</decoded_as>-->
+    <!--    <match>fail|Local login failed: bad username/password combination.</match>-->
+    <!--    <group>authentication_failed,pci_dss_10.2.4,pci_dss_10.2.5,gpg13_7.8,gdpr_IV_35.7.d,gdpr_IV_32.2,hipaa_164.312.b,nist_800_53_AU.14,nist_800_53_AC.7,tsc_CC6.1,tsc_CC6.8,tsc_CC7.2,tsc_CC7.3,</group>-->
+    <!--    <description>syslog: User authentication failure.</description>-->
+    <!--</rule>-->
+</group>
+

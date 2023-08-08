@@ -1,0 +1,61 @@
+<!-- Modify it at your will. -->
+
+<group name="trend_micro,cef_trend_micro">
+    <rule id="310000" level="0">
+        <decoded_as>bvbgate</decoded_as>
+        <description>BVBGate messages grouped.</description>
+    </rule>
+    
+    <!--<rule id="310001" level="2">-->
+    <!--    <if_sid>300000</if_sid>-->
+    <!--    <description>BVBGate messages grouped.</description>-->
+    <!--</rule>-->
+    
+    <rule id="310002" level="2">
+        <if_sid>310000</if_sid>
+        <field name="severity">LOG_INFO</field>
+        <description>Access tracking: $(domain)</description>
+        <group>low</group>
+    </rule>
+    
+    <!--<rule id="310003" level="6">-->
+    <!--    <if_sid>300000</if_sid>-->
+    <!--    <description>BVBGate messages grouped.</description>-->
+    <!--</rule>-->
+    
+    <rule id="310004" level="7">
+        <if_sid>310000</if_sid>
+        <field name="severity">LOG_CRIT</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+    <rule id="310005" level="8">
+        <if_sid>310004</if_sid>
+        <!--<field name="severity">LOG_CRIT</field>-->
+        <field name="event.name">Blocked URL log</field>
+        <description>Blocked URL:'$(url)'</description>
+        <mitre>
+            <id>T1105</id>
+        </mitre>
+        <group>high,pci_dss_1.3.1</group>
+    </rule>
+    
+    <rule id="310006" level="7">
+        <if_sid>310004</if_sid>
+        <field name="event.name">Application Control Protocol Block</field>
+        <description>$(event.name): $(client_ip)</description>
+        <mitre>
+            <id>T1059</id>
+        </mitre>
+        <group>high,pci_dss_1.3.1</group>
+    </rule>
+    
+    <!--<rule id="310007" level="12">-->
+    <!--    <if_sid>310002</if_sid>-->
+    <!--    <regex>10.33.130.(\d+)|10.33.142.(\d+)</regex>-->
+    <!--    <description>Unauthorized internet access: $(username)</description>-->
+    <!--    <group>critical</group>-->
+    <!--</rule>    -->
+    
+</group>

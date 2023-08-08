@@ -1,0 +1,10 @@
+<group name="phishing,">
+ <rule id="200970" level="12">
+    <location>phishing_detected</location>
+    <description>Phishing Detected</description>
+    <options>no_full_log</options>
+    <mitre>
+        <id>T1566</id>
+    </mitre>
+  </rule>
+</group>

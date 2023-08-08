@@ -1,0 +1,120 @@
+<!-- Modify it at your will. -->
+
+<group name="cef_trend_micro,trend_micro">
+
+    <rule id="200900" level="0">
+        <decoded_as>DDI</decoded_as>
+        <description>DDI messages grouped.</description>
+    </rule>
+    
+    <rule id="200901" level="2">
+        <if_sid>200900</if_sid>
+        <field name="event.name">Unsuccessful logon to Kerberos</field>
+        <description>DDI messages grouped.</description>
+        <mitre>
+            <id>T1110</id>
+        </mitre>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200902" level="2">
+        <if_sid>200900</if_sid>
+        <field name="severity">2</field>
+        <description>$(event.name)</description>
+        <group>low</group>
+    </rule>
+
+    <rule id="200903" level="3">
+        <if_sid>200900</if_sid>
+        <field name="severity">3</field>
+        <description>$(event.name)</description>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200913" level="3">
+        <if_sid>200903</if_sid>
+        <field name="event.name">Sample file sandbox analysis is finished</field>
+        <description>$(event.name): $(fname)</description>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200904" level="4">
+        <if_sid>200901</if_sid>
+        <description>$(event.name)</description>
+        <options>no_log</options>
+        <group>low</group>
+    </rule>
+
+    <rule id="200905" level="5">
+        <if_sid>200900</if_sid>
+        <field name="severity">5</field>
+        <description>$(event.name)</description>
+        <group>low</group>
+    </rule>
+    
+    <rule id="200906" level="6">
+        <if_sid>200900</if_sid>
+        <field name="severity">6</field>
+        <description>$(event.name)</description>
+        <group>medium</group>
+    </rule>
+    
+    <rule id="200914" level="6">
+        <if_sid>200906</if_sid>
+        <field name="event.name">Executable file dropped in administrative share - SMB</field>
+        <description>$(event.name): $(fname)</description>
+        <mitre>
+            <id>T1135</id>
+        </mitre>
+        <group>medium</group>
+    </rule>
+    
+    <rule id="200915" level="6">    <!--Đến 15 rồi-->
+        <if_sid>200906</if_sid>
+        <field name="event.name">Unregistered service</field>
+        <description>$(event.name): $(suser)</description>
+        <group>medium</group>
+    </rule>
+    
+    <rule id="200907" level="7">
+        <if_sid>200900</if_sid>
+        <field name="severity">7</field>
+        <description>$(event.name)</description>
+        <group>meidum</group>
+    </rule>
+    
+    <rule id="200908" level="8">
+        <if_sid>200900</if_sid>
+        <field name="severity">8</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+    <rule id="200909" level="9">
+        <if_sid>200900</if_sid>
+        <field name="severity">9</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+    <rule id="200910" level="10">
+        <if_sid>200900</if_sid>
+        <field name="severity">10</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+    <rule id="200911" level="11">
+        <if_sid>200900</if_sid>
+        <field name="severity">11</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+    <rule id="200912" level="12">
+        <if_sid>200900</if_sid>
+        <match>CVE</match>
+        <description>$(event.name)</description>
+        <group>critical</group>
+    </rule>
+</group>

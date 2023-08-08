@@ -1,0 +1,47 @@
+<!-- Modify it at your will. -->
+
+<group name="trend_micro,cef_trend_micro">
+
+    <rule id="310900" level="3">
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">3</field>
+        <description>$(event.name)</description>
+        <group>low</group>
+    </rule>
+
+    <rule id="310901" level="6">
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">6</field>
+        <description>$(event.name)</description>
+        <group>medium</group>
+    </rule>
+
+    <rule id="310902" level="6">
+        <if_sid>310901</if_sid>
+        <field name="event.name">AppControl detectOnly</field>
+        <description>$(event.name): $(suser)</description>
+        <group>medium</group>
+    </rule>
+
+    <rule id="310903" level="8">
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">8</field>
+        <description>$(event.name)</description>
+        <group>high</group>
+    </rule>
+    
+    <rule id="310904" level="8">
+        <if_sid>310903</if_sid>
+        <field name="event.name">Agent/Appliance Error</field>
+        <description>$(event.name): $(dst)</description>
+        <group>high</group>
+    </rule>
+
+    <rule id="310908" level="10">
+        <decoded_as>cef_trend_micro</decoded_as>
+        <field name="severity">10</field>
+        <description>$(event.name)</description>
+        <group>critical</group>
+    </rule>
+
+</group>
