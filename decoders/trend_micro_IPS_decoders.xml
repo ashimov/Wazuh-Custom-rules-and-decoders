@@ -1,13 +1,10 @@
-
-
-	
-<!--BVB-TRENDMICRO-SMS CEF:0|TippingPoint|UnityOne|1.0.0.17|7610|Geo|1-->
+<!--TRENDMICRO-SMS CEF:0|TippingPoint|UnityOne|1.0.0.17|7610|Geo|1-->
 <!--|app=IP cnt=1 dst=192.168.12.32 dpt=25-->
 <!--act=Block cn1=121 cn1Label=VLAN ID cn2=33554431 -->
 <!--cn2Label=Taxonomy cn3=0 cn3Label=Packet Trace cs1=STANDARD -->
 <!--cs1Label=Profile Name cs2=e3d7b833-41c0-4ad6-8c88-503daecb6300 cs2Label=Policy UUID cs3=00000001-0001-0001-0001-000000007610 -->
 <!--cs3Label=Signature UUID cs4=8 cs4Label=DeviceSegment -->
-<!--cs5=BVB-TRENDMICRO-SMS cs5Label=SMS Name dvchost=DC-IPS-TPS2200T-01 cs6=5.53.125.30 -->
+<!--cs5=TRENDMICRO-SMS cs5Label=SMS Name dvchost=DC-IPS-TPS2200T-01 cs6=5.53.125.30 -->
 <!--cs6Label=Filter Message Parms srcip=5.53.125.30 spt=56377 -->
 <!--externalId=48550640 rt=1684827911048 cat=Reputation proto=IP -->
 <!--deviceInboundInterface=15 c6a2= c6a2Label=Source -->
@@ -17,30 +14,30 @@
 <!--duser= dntdom=-->
 
 	
-<!--BVB-TRENDMICRO-SMS administrator|192.168.5.68|61392|-1|success|Login on account|1684827562793-->
+<!--TRENDMICRO-SMS administrator|192.168.5.68|61392|-1|success|Login on account|1684827562793-->
 
 
 <decoder name="trend_micro_IPS">
-    <prematch>BVB-TRENDMICRO-SMS</prematch>
+    <prematch>TRENDMICRO-SMS</prematch>
 </decoder>
 
 <decoder name="trend_micro_IPS">
     <parent>trend_micro_IPS</parent>
-    <regex>BVB-TRENDMICRO-SMS (\.+)\|(\.+)\|(\d+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <regex>TRENDMICRO-SMS (\.+)\|(\.+)\|(\d+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
     <order>suser,src,event.id,type,event.status,description</order>
 </decoder>
 
 <decoder name="trend_micro_IPS">
     <parent>trend_micro_IPS</parent>
-    <regex>BVB-TRENDMICRO-SMS CEF:0\|(\.+)\|(\.+)\|(\.+)\|(\d+)\|(\.+)\|</regex>
-    <order>application,productname,version,event.id,event.name</order>
+    <regex>TRENDMICRO-SMS (\.+)\|(\.+)\|(\p\d+)\|(\.+)\|(\.+)\|(\.+)\|</regex>
+    <order>suser,src,event.id,type,event.status,description</order>
 </decoder>
 
-<!--<decoder name="trend_micro_IPS_user_authentication">-->
-<!--    <parent>trend_micro_IPS</parent>-->
-<!--    <regex>BVB-TRENDMICRO-SMS (\.+)\|(\.+)\|(\.+)\|(\.+)\|(success)|(\.+)\|</regex>-->
-<!--    <order>srcuser,src,type,code,status,msg</order>-->
-<!--</decoder>-->
+<decoder name="trend_micro_IPS">
+    <parent>trend_micro_IPS</parent>
+    <regex>TRENDMICRO-SMS CEF:0\|(\.+)\|(\.+)\|(\.+)\|(\d+)\|(\.+)\|(\d+)|</regex>
+    <order>application,productname,version,event.id,event.name,severity</order>
+</decoder>
 
 <decoder name="trend_micro_IPS">
     <parent>trend_micro_IPS</parent>
@@ -137,12 +134,6 @@
     <regex>cs6Label=(\.+) \.+=</regex>
     <order>cs6Label</order>
 </decoder>
-
-<!--<decoder name="trend_micro_IPS">-->
-<!--    <parent>trend_micro_IPS</parent>-->
-<!--    <regex>sourceTranslatedAddress=(\S+)</regex>-->
-<!--    <order>sourceTranslatedAddress</order>-->
-<!--</decoder>-->
 
 <decoder name="trend_micro_IPS">
     <parent>trend_micro_IPS</parent>
