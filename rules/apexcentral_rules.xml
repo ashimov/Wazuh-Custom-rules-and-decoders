@@ -40,8 +40,7 @@
         <field name="event.name">Suspicious Connection</field>
         <description>$(event.name): $(src)</description>
         <mitre>
-            <id>T1049</id>
-            <id>T1071</id> 
+            <id>T1049</id> 
         </mitre>
         <group>low,pci_dss_10.2</group>
     </rule>
