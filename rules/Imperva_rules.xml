@@ -20,7 +20,7 @@
         <match>HTML META tag injection</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1059</id>
+            <id>T1055</id>
         </mitre>
     </rule>
     
@@ -37,7 +37,8 @@
         <match>Illegal Parameter Encoding</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1132,T1553</id>
+            <id>T1132</id>
+            <id>T1553</id>
         </mitre>
     </rule>
     <rule id="82007" level="3">
@@ -72,7 +73,8 @@
         <match>Abnormally Long Request</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1498,T1573</id>
+            <id>T1573</id>
+            <id>T1498</id>
         </mitre>
     </rule>
     
@@ -153,7 +155,7 @@
         <match>WEB-MISC apache DOS attempt</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1498,T1499</id>
+            <id>T1498</id>
         </mitre>
     </rule>
     <rule id="820191" level="3">
@@ -161,7 +163,7 @@
         <match>10.33.130.</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1498,T1499</id>
+            <id>T1498</id>
         </mitre>
     </rule>
     
@@ -188,7 +190,8 @@
         <match>SQL Injection</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1574,T1059</id>
+            <id>T1574</id>
+            <id>T1059</id>
         </mitre>
     </rule>
     <rule id="820221" level="3">
@@ -196,7 +199,8 @@
         <match>10.33.130.</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1574,T1059</id>
+            <id>T1574</id>
+            <id>T1059</id>
         </mitre>
     </rule>
     
@@ -239,7 +243,8 @@
         <match>XSS</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1059,T1027</id>
+            <id>T1027</id>
+            <id>T1059</id>
         </mitre>
     </rule>
     <rule id="820251" level="3">
@@ -247,7 +252,8 @@
         <match>10.33.130.</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1059,T1027</id>
+            <id>T1027</id>
+            <id>T1059</id>
         </mitre>
     </rule>
     
@@ -256,7 +262,8 @@
         <match>WEB-ATTACKS</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1105,T1222</id>
+            <id>T1105</id>
+            <id>T1222</id>
         </mitre>
     </rule>
     
@@ -297,7 +304,8 @@
         <match>System32 access trial</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1003,T1047</id>
+            <id>T1003</id>
+            <id>T1047</id>
         </mitre>
     </rule>
     
@@ -312,7 +320,8 @@
         <match>SQLI using concat method</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1574,T1059</id>
+            <id>T1574</id>
+            <id>T1059</id>
         </mitre>
     </rule>
     
@@ -330,7 +339,7 @@
         <match>SHELLCODE x86 NOOP</match>
         <description>$(cs5)</description>
         <mitre>
-            <id>T1059,T1055</id>
+            <id>T1059</id>
         </mitre>
     </rule>
     
