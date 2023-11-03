@@ -1,0 +1,180 @@
+<!-- Modify it at your will. -->
+
+<!--
+
+Sample logs:
+
+webgw3.retoor.vn: <Thu, 25 May 2023 09:21:19,ICT> [EVT_URL_BLOCKING|LOG_CRIT] Blocked URL log tk_username=192.168.142.168,tk_date_field=2023-05-25 09:21:19+0700,tk_protocol=https,tk_url=https://accounts.google.com/ListAccounts?gpsia=1&amp;source=ChromiumBrowser&amp;json=standard,tk_malicious_entity=,tk_file_name=ListAccounts,tk_entity_name=,tk_action=,tk_scan_type=user defined,tk_blocked_by=rule,tk_rule_name=@accounts.google.com*,tk_opp_id=0,tk_group_name=None,tk_category=URL Blocking,tk_uid=0003382715-3fa4ad1a022205239b1f,tk_filter_action=1
+
+webgw3.retoor.vn: <Thu, 25 May 2023 09:21:18,ICT> [EVT_URL_ACCESS_TRACKING|LOG_INFO] Access tracking log tk_username=192.168.142.185,tk_url=https://group-wpa.chat.zalo.me/,tk_size=156,tk_date_field=2023-05-25 09:21:18+0700,tk_protocol=https,tk_mime_content=text/javascript,tk_server=webgw3.retoor.vn,tk_client_ip=192.168.142.185,tk_server_ip=49.213.78.101,tk_domain=group-wpa.chat.zalo.me,tk_path=/,tk_file_name=,tk_operation=POST,tk_uid=0003382682-eadfb48b41b4b290a11d,tk_category=4,tk_category_type=1
+
+webgw3.retoor.vn: <Thu, 25 May 2023 09:21:23,ICT> [EVT_APP_CONTROL_BLOCK|LOG_CRIT] Application Control Protocol Block tk_username=192.168.130.98,tk_date_field=2023-05-25 09:21:23+0700,tk_category=Web,tk_protocol=YouTube,tk_rule_name=Policy_TTCNTT,tk_group_name=Unknown,tk_client_ip=192.168.130.98
+
+2023 Aug 17 14:53:30 (dc-collectorlinux) any->/var/log/dc-collectorlinux/10.33.6.66/forwarder.log Aug 17 07:53:30 10.33.6.66 webgw: <Thu, 17 Aug 2023 14:53:26,ICT> [EVT_URL_BLOCKING|LOG_CRIT] Blocked URL log tk_username=10.179.130.163,tk_date_field=2023-08-17 14:53:26+0700,tk_protocol=https,tk_url=https://cws.connectedpdf.com/2.0.0.0/Foxit%20Reader/12.1.0.15250/en-US/cpdfApi.json,tk_malicious_entity=,tk_file_name=,tk_entity_name=,tk_action=,tk_scan_type=content filter,tk_blocked_by=policy,tk_rule_name=Alow_Website,tk_opp_id=0,tk_group_name=None,tk_category=Business/Economy,tk_uid=0385904434-2fed01fac3048ea2b569,tk_filter_action=1 
+ 
+
+
+-->
+<decoder name="webgw">
+  <program_name>webgw</program_name>
+</decoder>
+
+<decoder name="webgw">
+  <prematch>^webgw</prematch>
+</decoder>
+
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>[(\.*)\|(\.*)] (\.*) \w+=</regex>
+  <order>event.description,severity,event.name</order>
+</decoder>
+        
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_action=(\.*),</regex>
+  <order>action</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_blocked_by=(\.*),</regex>
+  <order>blocked_by</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_category=(\.*),</regex>
+  <order>category</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_category_type=(\.*),</regex>
+  <order>category_type</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_client_ip=(\.*),|tk_client_ip=(\.*)</regex>
+  <order>client_ip</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_date_field=(\.*),</regex>
+  <order>date_field</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_domain=(\.*),</regex>
+  <order>domain</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_entity_name=(\.*),</regex>
+  <order>entity_name</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_file_name=(\.*),</regex>
+  <order>file_name</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_filter_action=(\.*),</regex>
+  <order>filter_action</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_group_name=(\.*),</regex>
+  <order>group_name</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_malicious_entity=(\.*),</regex>
+  <order>malicious_entity</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_mime_content=(\.*),</regex>
+  <order>mime_content</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_operation=(\.*),</regex>
+  <order>operation</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_opp_id=(\.*),</regex>
+  <order>opp_id</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_path=(\.*),</regex>
+  <order>path</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_protocol=(\.*),</regex>
+  <order>protocol</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_rule_name=(\.*),</regex>
+  <order>rule_name</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_scan_type=(\.*),$</regex>
+  <order>scan_type</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_server=(\.*),</regex>
+  <order>server</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_server_ip=(\.*),</regex>
+  <order>server_ip</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_size=(\.*),</regex>
+  <order>size</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_uid=(\.*),</regex>
+  <order>uid</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_url=(\.*),</regex>
+  <order>url</order>
+</decoder>
+    
+<decoder name="webgw">
+  <parent>webgw</parent>
+  <regex>tk_username=(\.*),</regex>
+  <order>username</order>
+</decoder>
