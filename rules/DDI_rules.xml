@@ -9,6 +9,7 @@
     
     <rule id="200901" level="2">
         <if_sid>200900</if_sid>
+        <field name="severity">4</field>
         <field name="event.name">Unsuccessful logon to Kerberos</field>
         <description>DDI messages grouped.</description>
         <mitre>
@@ -39,9 +40,17 @@
     </rule>
     
     <rule id="200904" level="4">
-        <if_sid>200901</if_sid>
+        <if_sid>200903</if_sid>
+        <field name="severity">4</field>
         <description>$(event.name)</description>
-        <options>no_log</options>
+        <!--<options>no_log</options>-->
+        <group>low</group>
+    </rule>
+    
+    <rule id="200916" level="3">
+        <if_sid>200903</if_sid>
+        <field name="event.name">Successful logon</field>
+        <description>$(event.name)</description>
         <group>low</group>
     </rule>
 
