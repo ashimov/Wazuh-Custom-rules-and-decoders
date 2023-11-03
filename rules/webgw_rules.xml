@@ -2,13 +2,13 @@
 
 <group name="trend_micro,cef_trend_micro">
     <rule id="310000" level="0">
-        <decoded_as>bvbgate</decoded_as>
-        <description>BVBGate messages grouped.</description>
+        <decoded_as>webgw</decoded_as>
+        <description>Webgw messages grouped.</description>
     </rule>
     
     <!--<rule id="310001" level="2">-->
     <!--    <if_sid>300000</if_sid>-->
-    <!--    <description>BVBGate messages grouped.</description>-->
+    <!--    <description>Webgw messages grouped.</description>-->
     <!--</rule>-->
     
     <rule id="310002" level="2">
@@ -20,7 +20,7 @@
     
     <!--<rule id="310003" level="6">-->
     <!--    <if_sid>300000</if_sid>-->
-    <!--    <description>BVBGate messages grouped.</description>-->
+    <!--    <description>Webgw messages grouped.</description>-->
     <!--</rule>-->
     
     <rule id="310004" level="7">
