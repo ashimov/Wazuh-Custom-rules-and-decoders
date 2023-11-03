@@ -1,4 +1,14 @@
 Wazuh Custom rules and decoders
+
+Customed some of physical devices:
+
+-  TrendMicro Apex Central
+-  TrendMicro Deep Security
+-  TrendMicro Deep Discovery Inspector
+-  TrendMicro IWSVA
+-  TrendMicro IPS
+-  Imperva WAF
+
 To add to wazuh-manager:
 ``` 
 git clone https://github.com/re-toor/Wazuh-Custom-rules-and-decoders.git && cd Wazuh-Custom-rules-and-decoders
