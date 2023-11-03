@@ -3,8 +3,8 @@
 
     <rule id="200811" level="3">
         <decoded_as>trend_micro_IPS</decoded_as>
-        <match>BVB-TRENDMICRO-SMS</match>
-        <description>IPS log detected.</description>
+        <match>TRENDMICRO-SMS</match>
+        <description>$(event.name)</description>
     </rule>
     
     <rule id="200812" level="4">
