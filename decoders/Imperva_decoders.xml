@@ -1,12 +1,14 @@
 <!-- Modify it at your will. -->
 
-<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|HTTP/1.x Protocol Policy|HTTP/1.x Protocol Policy|Medium|act=None dst=192.168.6.36 dpt=443 duser=n/a src=192.168.139.20 spt=64532 proto=TCP rt=Jun 09 2023 10:53:07 cat=Alert cs1=HTTP/1.x Protocol Policy cs1Label=Policy cs2=mail.baovietbank.vn cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.baovietbank.vn cs4Label=ApplicationName cs5=Distributed Illegal Byte Code Character in Parameter Value cs5Label=Description-->
+<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|HTTP/1.x Protocol Policy|HTTP/1.x Protocol Policy|Medium|act=None dst=192.168.6.36 dpt=443 duser=n/a src=192.168.139.20 spt=64532 proto=TCP rt=Jun 09 2023 10:53:07 cat=Alert cs1=HTTP/1.x Protocol Policy cs1Label=Policy cs2=mail.retoor cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.retoor cs4Label=ApplicationName cs5=Distributed Illegal Byte Code Character in Parameter Value cs5Label=Description-->
 
-<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|HTTP/1.x Protocol Policy|HTTP/1.x Protocol Policy|Low|act=None dst=192.168.6.36 dpt=443 duser=n/a src=10.175.128.131 spt=49911 proto=TCP rt=Jun 09 2023 07:21:21 cat=Alert cs1=HTTP/1.x Protocol Policy cs1Label=Policy cs2=mail.baovietbank.vn cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.baovietbank.vn cs4Label=ApplicationName cs5=Distributed Extremely Long Parameter cs5Label=Description-->
+<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|HTTP/1.x Protocol Policy|HTTP/1.x Protocol Policy|Low|act=None dst=192.168.6.36 dpt=443 duser=n/a src=10.175.128.131 spt=49911 proto=TCP rt=Jun 09 2023 07:21:21 cat=Alert cs1=HTTP/1.x Protocol Policy cs1Label=Policy cs2=mail.retoor cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.retoor cs4Label=ApplicationName cs5=Distributed Extremely Long Parameter cs5Label=Description-->
 
-<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|Recommended Signatures Policy for Web Applications|Recommended Signatures Policy for Web Applications|High|act=Block dst=192.168.6.36 dpt=443 duser=n/a src=10.175.128.131 spt=49911 proto=TCP rt=Jun 09 2023 07:41:21 cat=Alert cs1=Recommended Signatures Policy for Web Applications cs1Label=Policy cs2=mail.baovietbank.vn cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.baovietbank.vn cs4Label=ApplicationName cs5=Distributed Directory Traversal - 6(+) cs5Label=Description-->
+<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|Recommended Signatures Policy for Web Applications|Recommended Signatures Policy for Web Applications|High|act=Block dst=192.168.6.36 dpt=443 duser=n/a src=10.175.128.131 spt=49911 proto=TCP rt=Jun 09 2023 07:41:21 cat=Alert cs1=Recommended Signatures Policy for Web Applications cs1Label=Policy cs2=mail.retoor cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.retoor cs4Label=ApplicationName cs5=Distributed Directory Traversal - 6(+) cs5Label=Description-->
 
-<decoder name="Imperva"> 
+<!--CEF:0|Imperva Inc.|SecureSphere|14.6.0|Recommended Signatures Policy for Web Applications|Recommended Signatures Policy for Web Applications|High|act=Block dst=192.168.6.36 dpt=443 duser=n/a src=10.175.128.131 spt=49911 proto=TCP rt=Jun 09 2023 07:41:21 cat=Alert cs1=Recommended Signatures Policy for Web Applications cs1Label=Policy cs2=mail.retoor cs2Label=ServerGroup cs3=mail cs3Label=ServiceName cs4=mail.retoor cs4Label=ApplicationName cs5=SQLI using concat method cs5Label=Description-->
+
+	<decoder name="Imperva"> 
        <prematch>CEF:0\|Imperva Inc.\|</prematch> 
     </decoder> 
  
@@ -90,7 +92,7 @@
  
     <decoder name="Imperva_child"> 
        <parent>Imperva</parent> 
-       <regex>cs4=(\.+) \w+=</regex> 
+       <regex>cs4=(\s)|cs4=(\.+) \w+=</regex> 
        <order>cs4</order> 
     </decoder> 
  
